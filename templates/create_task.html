@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+    <style>
+        .parameter-group {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function addParameterField() {
+            const container = document.getElementById("parameters-container");
+            const group = document.createElement("div");
+            group.className = "parameter-group";
+
+            group.innerHTML = `
+                <label for="name">Name:</label>
+                <input type="text" name="name[]" required>
+                <label for="selector">Selector:</label>
+                <input type="text" name="selector[]" required>
+                <label for="attribute">Attribute:</label>
+                <select name="attribute[]">
+                    <option value="text">Text</option>
+                    <option value="href">Href</option>
+                    <option value="src">Src</option>
+                </select>
+                <label for="multiple">Multiple:</label>
+                <input type="checkbox" name="multiple[]">
+                <button type="button" onclick="removeParameterField(this)">Remove</button>
+            `;
+
+            container.appendChild(group);
+        }
+
+        function removeParameterField(button) {
+            const group = button.parentElement;
+            group.remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>Create a New Task</h1>
+    <form method="POST" action="/create-task">
+        <label for="url">Target URL:</label><br>
+        <input type="url" id="url" name="url" required><br><br>
+
+        <label for="container_selector">Container Selector:</label><br>
+        <input type="text" id="container_selector" name="container_selector" required><br><br>
+
+        <h3>Elements</h3>
+        <div id="parameters-container">
+            <div class="parameter-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name[]" required>
+                <label for="selector">Selector:</label>
+                <input type="text" name="selector[]" required>
+                <label for="attribute">Attribute:</label>
+                <select name="attribute[]">
+                    <option value="text">Text</option>
+                    <option value="href">Href</option>
+                    <option value="src">Src</option>
+                </select>
+                <label for="multiple">Multiple:</label>
+                <input type="checkbox" name="multiple[]">
+                <button type="button" onclick="removeParameterField(this)">Remove</button>
+            </div>
+        </div>
+        <button type="button" onclick="addParameterField()">+ Add Element</button><br><br>
+
+        <button type="submit">Create Task</button>
+    </form>
+    <a href="/">Back to Task List</a>
+</body>
+</html>
