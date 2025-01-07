@@ -10,9 +10,7 @@
     <div class="container">
         <h1>Task Manager</h1>
         
-        <!-- Форма создания задачи -->
         <form id="task-form">
-            <!-- Выпадающий список типа парсинга -->
             <label for="task-type">Task Type:</label>
             <select id="task-type" name="task_type" onchange="showFieldsByType()">
                 <option value="">-- Select Task Type --</option>
@@ -20,13 +18,11 @@
                 <option value="regex_parse">Regex Parsing</option>
             </select>
 
-            <!-- Общие поля -->
             <div id="general-fields">
                 <label for="urls">URLs (comma-separated):</label>
                 <input type="text" id="urls" name="urls" placeholder="https://example.com, https://example.org" required>
             </div>
 
-            <!-- Поля для CSS Selector Parsing -->
             <div id="css-fields" class="hidden">
                 <label for="container-selector">Container Selector:</label>
                 <input type="text" id="container-selector" name="container_selector" placeholder=".container">
@@ -59,7 +55,6 @@
                 <button type="button" id="add-parameter" onclick="addCSSField()">Add Element</button>
             </div>
 
-            <!-- Поля для Regex Parsing -->
             <div id="regex-fields" class="hidden">
                 <h3>Regex Patterns</h3>
                 <div id="regex-patterns">
@@ -70,15 +65,13 @@
                 <button type="button" onclick="addRegexPattern()">Add Regex Pattern</button>
             </div>
 
-            <!-- Кнопка создания задачи -->
-            <button type="submit">Create Task</button>
+            <button type="button" onclick="submitTask()">Create Task</button>
+
         </form>
 
-        <!-- Список задач -->
         <h2>Tasks</h2>
         <ul id="tasks-list"></ul>
 
-        <!-- Детали задачи -->
         <div id="task-details" style="display: none;">
             <h3>Task Details</h3>
             <pre id="task-details-content"></pre>
@@ -86,10 +79,8 @@
         </div>
     </div>
 
-    <!-- Подключение скрипта -->
     <script src="/temp_name/js/scripts.js"></script>
     <script>
-        // Показать нужные поля в зависимости от выбранного типа парсинга
         function showFieldsByType() {
             const taskType = document.getElementById("task-type").value;
             document.getElementById("css-fields").classList.add("hidden");
@@ -102,7 +93,6 @@
             }
         }
 
-        // Добавление новых полей для CSS Selector Parsing
         function addCSSField() {
             const container = document.getElementById("parameters-container");
             const newField = document.createElement("div");
@@ -129,7 +119,6 @@
             container.appendChild(newField);
         }
 
-        // Добавление новых полей для Regex Parsing
         function addRegexPattern() {
             const container = document.getElementById("regex-patterns");
             const inputDiv = document.createElement("div");

@@ -73,33 +73,6 @@ async function submitTask() {
 }
 
 async function loadTasks() {
-    const response = await fetch("/tasks");
-    const tasks = await response.json();
-    const taskList = document.getElementById("task-list");
-    taskList.innerHTML = "";
-    for (const [taskId, task] of Object.entries(tasks)) {
-        const li = document.createElement("li");
-        li.textContent = `Task ${taskId}: ${task.status}`;
-        taskList.appendChild(li);
-    }
-}
-
-// async function loadTasks() {
-//     const response = await fetch('/tasks');
-//     const tasks = await response.json();
-
-//     const tasksList = document.getElementById('tasks-list');
-//     tasksList.innerHTML = '';
-
-//     for (const taskId in tasks) {
-//         const task = tasks[taskId];
-//         const li = document.createElement('li');
-//         li.textContent = `Task ${task.task_id}: ${task.status}`;
-//         tasksList.appendChild(li);
-//     }
-// }
-
-async function loadTasks() {
     const response = await fetch('/tasks');
     const tasks = await response.json();
 
